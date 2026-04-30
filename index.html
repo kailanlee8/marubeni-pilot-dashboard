@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Marubeni × Rogo — Pilot Wrap-Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-primary: rgba(253, 253, 252, 1);
+  --bg-secondary: rgba(250, 250, 249, 1);
+  --bg-tertiary: rgba(245, 245, 244, 1);
+  --bg-quaternary: rgba(238, 237, 236, 1);
+  --surface: #ffffff;
+  --elevated: rgba(28, 25, 23, 0.05);
+  --text-primary: rgba(28, 25, 23, 1);
+  --text-secondary: rgba(68, 64, 60, 1);
+  --text-tertiary: rgba(120, 113, 108, 1);
+  --text-quaternary: rgba(168, 162, 158, 1);
+  --border-primary: rgba(12, 10, 9, 0.1);
+  --border-primary-solid: rgba(231, 229, 228, 1);
+  --border-secondary-solid: rgba(214, 211, 209, 1);
+  --brand-primary: rgba(19, 91, 68, 1);
+  --brand-primary-hover: rgba(29, 117, 89, 1);
+  --brand-secondary: rgba(13, 143, 101, 0.18);
+  --brand-secondary-solid: rgba(207, 233, 224, 1);
+  --brand-foreground: rgba(245, 245, 244, 1);
+  --surface-inverted: rgba(41, 37, 36, 1);
+  --text-primary-inverted: rgba(250, 250, 249, 1);
+  --destructive: rgba(220, 38, 38, 1);
+  --warning: rgba(245, 158, 11, 1);
+  --success: rgba(19, 91, 68, 1);
+  --chart-1: rgb(27, 140, 108);
+  --chart-2: rgb(83, 167, 210);
+  --chart-3: rgb(253, 161, 100);
+  --chart-4: rgb(60, 102, 126);
+  --chart-5: rgb(158, 120, 143);
+  --marubeni-red: #c8102e;
+  --shadow-sm: 0 1px 1px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.03);
+  --shadow-md: 0 2px 6px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg-primary);color:var(--text-primary);font-family:'Inter',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+.page{max-width:1240px;margin:0 auto;padding:32px 28px 64px}
+
+/* Hero */
+.hero{background:var(--surface-inverted);color:var(--text-primary-inverted);border-radius:var(--radius-lg);padding:36px 40px;display:flex;flex-direction:column;gap:20px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-80px;top:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle, rgba(13,143,101,.18) 0%, transparent 70%)}
+.hero-row{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;position:relative;z-index:1}
+.hero .eyebrow{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(214,211,209,.85);font-weight:500}
+.hero h1{font-family:'Inter',serif;font-size:2.25rem;line-height:1.15;font-weight:500;margin-top:8px;letter-spacing:-0.01em}
+.hero .sub{color:rgba(214,211,209,.95);font-size:.95rem;margin-top:6px;max-width:780px}
+.hero-mark{display:flex;align-items:center;gap:14px;font-size:.85rem;color:rgba(214,211,209,.85)}
+.hero-logo{display:flex;align-items:center;gap:12px;font-weight:500}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--marubeni-red)}
+.dot-r{background:var(--chart-1)}
+
+/* KPI strip */
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:20px;position:relative;z-index:1}
+.kpi{background:rgba(255,255,255,0.06);border:1px solid rgba(240,236,234,0.12);border-radius:var(--radius-md);padding:14px 16px}
+.kpi .label{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(214,211,209,.7);font-weight:500}
+.kpi .value{font-size:1.75rem;font-weight:500;margin-top:6px;font-variant-numeric:tabular-nums;font-family:'Roboto Mono',monospace;letter-spacing:-0.02em}
+.kpi .delta{font-size:.78rem;color:rgba(207,233,224,.95);margin-top:2px}
+
+/* Section */
+section{margin-top:36px}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;gap:24px}
+.section-head h2{font-size:1.35rem;font-weight:500;letter-spacing:-0.01em}
+.section-head .lede{color:var(--text-tertiary);font-size:.875rem;max-width:520px;text-align:right}
+
+/* Card */
+.card{background:var(--surface);border:1px solid var(--border-primary-solid);border-radius:var(--radius-lg);padding:20px}
+.card h3{font-size:1rem;font-weight:500;margin-bottom:4px}
+.card .sub{color:var(--text-tertiary);font-size:.8rem;margin-bottom:14px}
+
+/* Grids */
+.grid-2{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media (max-width:900px){.grid-2,.grid-3,.grid-4,.kpi-row{grid-template-columns:1fr 1fr}}
+
+/* User table */
+.utable{width:100%;border-collapse:collapse;font-size:.875rem}
+.utable th{text-align:left;font-weight:500;color:var(--text-tertiary);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:10px 12px;border-bottom:1px solid var(--border-secondary-solid)}
+.utable td{padding:14px 12px;border-bottom:1px solid var(--border-primary-solid);vertical-align:middle}
+.utable tr:last-child td{border-bottom:none}
+.utable .num{text-align:right;font-family:'Roboto Mono',monospace;font-variant-numeric:tabular-nums}
+.utable tr:hover td{background:var(--bg-secondary)}
+.user-cell{display:flex;align-items:center;gap:10px}
+.avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg-tertiary);color:var(--text-secondary);font-weight:500;font-size:.78rem;flex:0 0 auto}
+.avatar.tomoyo{background:rgba(13,143,101,.15);color:var(--brand-primary)}
+.avatar.jm{background:rgba(83,167,210,.18);color:#2c6586}
+.avatar.kayo{background:rgba(253,161,100,.22);color:#a35a23}
+.avatar.kensuke{background:rgba(245,158,11,.18);color:#a4690b}
+.avatar.naoko{background:rgba(158,120,143,.22);color:#76506a}
+.uname{font-weight:500}
+.urole{color:var(--text-tertiary);font-size:.75rem}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:500;padding:3px 9px;border-radius:99px;line-height:1.4;white-space:nowrap;width:max-content}
+.b-strong{background:var(--brand-secondary);color:var(--brand-primary)}
+.b-mid{background:rgba(245,158,11,.16);color:#915309}
+.b-watch{background:rgba(220,38,38,.10);color:#a62920}
+.b-late{background:rgba(83,167,210,.18);color:#2c6586}
+
+/* Donut */
+.donut-wrap{display:flex;align-items:center;justify-content:center;gap:24px;padding:8px 0}
+.donut-legend{display:flex;flex-direction:column;gap:10px}
+.legend-row{display:flex;align-items:center;gap:10px;font-size:.85rem}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+
+/* Timeline */
+.timeline{position:relative;padding-left:24px}
+.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--border-primary-solid)}
+.tl-item{position:relative;padding:10px 0 18px 18px}
+.tl-item::before{content:"";position:absolute;left:-21px;top:14px;width:14px;height:14px;border-radius:50%;background:var(--surface);border:2px solid var(--brand-primary)}
+.tl-item.upcoming::before{border-color:var(--text-quaternary);background:var(--bg-tertiary)}
+.tl-item.declined::before{border-color:var(--destructive);background:var(--surface)}
+.tl-date{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);font-weight:500}
+.tl-title{font-size:.95rem;font-weight:500;margin-top:2px}
+.tl-desc{font-size:.83rem;color:var(--text-secondary);margin-top:4px}
+
+/* Use case cards */
+.uc-card{background:var(--surface);border:1px solid var(--border-primary-solid);border-radius:var(--radius-lg);padding:18px;display:flex;flex-direction:column;gap:8px}
+.uc-card .title{font-size:.95rem;font-weight:500}
+.uc-card .meta{font-size:.75rem;color:var(--text-tertiary)}
+.uc-card .body{font-size:.85rem;color:var(--text-secondary)}
+.uc-tag{display:inline-block;font-size:.7rem;font-weight:500;color:var(--brand-primary);background:var(--brand-secondary);padding:3px 8px;border-radius:99px;margin-right:6px;margin-bottom:4px}
+
+/* Features matrix */
+.matrix{width:100%;border-collapse:collapse;font-size:.85rem}
+.matrix th{text-align:center;color:var(--text-tertiary);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;font-weight:500;padding:8px 6px;border-bottom:1px solid var(--border-secondary-solid)}
+.matrix th:first-child{text-align:left;padding-left:12px}
+.matrix td{padding:10px 6px;border-bottom:1px solid var(--border-primary-solid);text-align:center}
+.matrix td:first-child{text-align:left;padding-left:12px;font-weight:500}
+.dotmark{width:14px;height:14px;border-radius:50%;display:inline-block}
+.dot-on{background:var(--brand-primary)}
+.dot-off{background:var(--bg-tertiary);border:1px solid var(--border-primary-solid)}
+
+/* Quotes */
+.quote{background:var(--bg-secondary);border-left:3px solid var(--brand-primary);padding:14px 18px;border-radius:var(--radius-md);font-size:.92rem;color:var(--text-primary);line-height:1.55}
+.quote.stat{border-left-color:var(--chart-2);background:rgba(83,167,210,.08)}
+.quote.wow{border-left-color:var(--chart-3);background:rgba(253,161,100,.08)}
+.quote .who{display:block;margin-top:8px;color:var(--text-tertiary);font-size:.78rem;font-weight:500}
+.quote .roi-num{font-family:'Roboto Mono',monospace;font-weight:500;color:var(--brand-primary)}
+
+/* Security */
+.sec-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:16px}
+.cert-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.cert{padding:6px 12px;border:1px solid var(--border-primary-solid);border-radius:99px;font-size:.78rem;font-weight:500;color:var(--text-secondary);background:var(--surface)}
+.sec-list{list-style:none;padding:0;margin:8px 0 0 0}
+.sec-list li{padding:8px 0;border-bottom:1px dashed var(--border-primary-solid);font-size:.875rem;color:var(--text-secondary);display:flex;gap:10px;align-items:flex-start}
+.sec-list li:last-child{border-bottom:none}
+.sec-list .check{color:var(--brand-primary);font-weight:600;flex:0 0 auto;margin-top:1px}
+
+/* Bars chart */
+.bars-chart{display:flex;flex-direction:column;gap:14px;padding:6px 0}
+.bar-row{display:grid;grid-template-columns:120px 1fr 60px;align-items:center;gap:12px}
+.bar-row .name{font-size:.875rem;font-weight:500}
+.bar-track-lg{height:18px;background:var(--bg-tertiary);border-radius:6px;overflow:hidden;position:relative}
+.bar-fill-lg{height:100%;background:linear-gradient(90deg, var(--chart-1) 0%, rgba(27,140,108,.85) 100%);border-radius:6px}
+.bar-row .val{font-family:'Roboto Mono',monospace;font-variant-numeric:tabular-nums;text-align:right;font-size:.85rem;color:var(--text-secondary)}
+
+/* Connector roadmap */
+.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.road-card{background:var(--surface);border:1px solid var(--border-primary-solid);border-radius:var(--radius-lg);padding:18px;display:flex;flex-direction:column;gap:10px}
+.road-card .step{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--text-tertiary)}
+.road-card .what{font-weight:500}
+.road-card .desc{font-size:.83rem;color:var(--text-secondary)}
+
+/* Footer */
+.footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--border-primary-solid);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;color:var(--text-tertiary);font-size:.78rem}
+
+.h-flex{display:flex;align-items:center;gap:10px}
+.kicker{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--brand-primary);margin-bottom:8px}
+
+/* Highlight number callouts */
+.callout{font-family:'Inter';display:flex;flex-direction:column;gap:4px;padding:14px;background:var(--bg-secondary);border-radius:var(--radius-md);border:1px solid var(--border-primary-solid)}
+.callout .big{font-size:1.6rem;font-family:'Roboto Mono',monospace;font-weight:500;letter-spacing:-0.01em}
+.callout .lab{font-size:.78rem;color:var(--text-tertiary)}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-row">
+      <div>
+        <div class="eyebrow">Pilot Wrap-Up</div>
+        <h1>Marubeni × Rogo</h1>
+        <div class="sub">A snapshot of the Marubeni team's first month on Rogo — usage, sessions, workflows built, and what unlocks the next leap.</div>
+      </div>
+      <div class="hero-mark">
+        <div class="hero-logo"><span class="dot"></span> Marubeni</div>
+        <span style="opacity:.4">×</span>
+        <div class="hero-logo"><span class="dot dot-r"></span> Rogo</div>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="label">Active Users</div>
+        <div class="value">5 / 5</div>
+        <div class="delta">100% MAU — no one dark</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Total Queries</div>
+        <div class="value">225</div>
+        <div class="delta">in first month</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Felix Concentration</div>
+        <div class="value">99%</div>
+        <div class="delta">223 of 225 via Felix</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Workshops Held</div>
+        <div class="value">7</div>
+        <div class="delta">incl. kick-off + 1:1s</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Workflows Live</div>
+        <div class="value">2</div>
+        <div class="delta">scheduled tasks running</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADLINE / ENGAGEMENT -->
+  <section>
+    <div class="section-head">
+      <div>
+        <div class="kicker">Headline</div>
+        <h2>Felix-native from day one</h2>
+      </div>
+      <div class="lede">99% of queries ran through Felix in the first month — a strong signal the team is using Rogo to ship work, not just to ask questions.</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Engagement by user</h3>
+        <div class="sub">Lifetime Felix messages, last 28 days</div>
+        <div class="bars-chart">
+          <div class="bar-row"><div class="name">Tomoyo Love</div><div class="bar-track-lg"><div class="bar-fill-lg" style="width:100%"></div></div><div class="val">168</div></div>
+          <div class="bar-row"><div class="name">Jean-Marc Michel</div><div class="bar-track-lg"><div class="bar-fill-lg" style="width:14.9%"></div></div><div class="val">25</div></div>
+          <div class="bar-row"><div class="name">Kayo Shiraishi</div><div class="bar-track-lg"><div class="bar-fill-lg" style="width:8.3%"></div></div><div class="val">14</div></div>
+          <div class="bar-row"><div class="name">Kensuke Arai</div><div class="bar-track-lg"><div class="bar-fill-lg" style="width:6.5%"></div></div><div class="val">11</div></div>
+          <div class="bar-row"><div class="name">Naoko Sugiyasu</div><div class="bar-track-lg"><div class="bar-fill-lg" style="width:4.2%"></div></div><div class="val">7</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Felix vs other entry points</h3>
+        <div class="sub">Distribution of all 225 queries</div>
+        <div class="donut-wrap">
+          <svg width="180" height="180" viewBox="0 0 42 42" style="transform:rotate(-90deg)">
+            <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--bg-tertiary)" stroke-width="6"/>
+            <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--chart-1)" stroke-width="6" stroke-dasharray="99.1 0.9" stroke-dashoffset="0"/>
+          </svg>
+          <div class="donut-legend">
+            <div class="legend-row"><span class="legend-dot" style="background:var(--chart-1)"></span> Felix queries — 223 (99%)</div>
+            <div class="legend-row"><span class="legend-dot" style="background:var(--bg-quaternary);border:1px solid var(--border-primary-solid)"></span> Other entry points — 2 (1%)</div>
+            <div style="margin-top:14px;font-size:.78rem;color:var(--text-tertiary);max-width:220px">For context, most teams sit at 60–75% Felix in their first month.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDIVIDUAL ACTIVITY -->
+  <section>
+    <div class="section-head">
+      <div>
+        <div class="kicker">Individual Activity</div>
+        <h2>Per-user breakdown</h2>
+      </div>
+      <div class="lede">Activity and roles across the team as of April 29, 2026.</div>
+    </div>
+
+    <div class="card" style="padding:8px 8px">
+      <table class="utable">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th class="num">Lifetime Felix Msgs</th>
+            <th class="num">Last 7 Days</th>
+            <th>First Active</th>
+            <th>Status</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="user-cell"><div class="avatar jm">JM</div><div><div class="uname">Jean-Marc Michel</div><div class="urole">Team lead</div></div></div></td>
+            <td class="num">25</td>
+            <td class="num">3</td>
+            <td>Apr 1</td>
+            <td><span class="badge b-mid">● Watch</span></td>
+            <td>Active weekly; usage has eased recently.</td>
+          </tr>
+          <tr>
+            <td><div class="user-cell"><div class="avatar tomoyo">TL</div><div><div class="uname">Tomoyo Love</div><div class="urole">Power user</div></div></div></td>
+            <td class="num">168</td>
+            <td class="num">51</td>
+            <td>Apr 1</td>
+            <td><span class="badge b-strong">● Compounding</span></td>
+            <td>Daily user; running scheduled tasks.</td>
+          </tr>
+          <tr>
+            <td><div class="user-cell"><div class="avatar kayo">KS</div><div><div class="uname">Kayo Shiraishi</div><div class="urole">R&amp;D reporting</div></div></div></td>
+            <td class="num">14</td>
+            <td class="num">5</td>
+            <td>Apr 13</td>
+            <td><span class="badge b-strong">● Strong</span></td>
+            <td>Broadest feature usage on the team (6 of 8).</td>
+          </tr>
+          <tr>
+            <td><div class="user-cell"><div class="avatar kensuke">KA</div><div><div class="uname">Kensuke Arai</div><div class="urole">Investment / M&amp;A</div></div></div></td>
+            <td class="num">11</td>
+            <td class="num">2</td>
+            <td>Apr 7</td>
+            <td><span class="badge b-mid">● Watch</span></td>
+            <td>Last active Apr 26; pace has softened.</td>
+          </tr>
+          <tr>
+            <td><div class="user-cell"><div class="avatar naoko">NS</div><div><div class="uname">Naoko Sugiyasu</div><div class="urole">Research</div></div></div></td>
+            <td class="num">7</td>
+            <td class="num">7</td>
+            <td>Apr 22</td>
+            <td><span class="badge b-late">● Activating</span></td>
+            <td>Late starter; first to build slides on the master template.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- TIMELINE + USE CASES -->
+  <section>
+    <div class="section-head">
+      <div>
+        <div class="kicker">Timeline &amp; Use Cases</div>
+        <h2>What we built together</h2>
+      </div>
+      <div class="lede">Sessions held over the pilot, and the workflows now live on the platform.</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Session timeline</h3>
+        <div class="sub">Kick-off through wrap-up · 9 sessions</div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">April 1, 2026</div>
+            <div class="tl-title">Pilot Kick-off · Group</div>
+            <div class="tl-desc">JM, Tomoyo, Kayo, Kensuke, Naoko — onboarding, accounts, first queries.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">April 14, 2026</div>
+            <div class="tl-title">1:1 Workshop · Jean-Marc</div>
+            <div class="tl-desc">Investment criteria walkthrough; mapped Rogo to deal screening, NBO prep, and long-list / short-list workflows.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">April 16, 2026</div>
+            <div class="tl-title">1:1 Workshop · Kayo</div>
+            <div class="tl-desc">Built the European pet food scheduled task; established two-tier approach (quick queries vs. full reports).</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">April 27, 2026</div>
+            <div class="tl-title">1:1 Workshop · Kayo</div>
+            <div class="tl-desc">Felix demoed for UK pet food market analysis with real-time Japanese translation; Marubeni PPT template integration kicked off.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">April 28, 2026</div>
+            <div class="tl-title">1:1 Workshop · Tomoyo (+ Naoko)</div>
+            <div class="tl-desc">Scheduled newsletter for pet food research; Tables feature for company tracking; Naoko activated.</div>
+          </div>
+          <div class="tl-item declined">
+            <div class="tl-date">April 28, 2026</div>
+            <div class="tl-title">1:1 Workshop · Kensuke (declined)</div>
+            <div class="tl-desc">Scheduled but not held — gap to close in any expanded rollout.</div>
+          </div>
+          <div class="tl-item upcoming">
+            <div class="tl-date">April 30, 2026 — upcoming</div>
+            <div class="tl-title">1:1 Workshop · Kayo</div>
+            <div class="tl-desc">Follow-up on R&amp;D reporting workflows and template customization.</div>
+          </div>
+          <div class="tl-item upcoming">
+            <div class="tl-date">May 5, 2026 — upcoming</div>
+            <div class="tl-title">Skill Building Workshop · Group</div>
+            <div class="tl-desc">Custom skill creation across the team — full skill-building permission set now enabled.</div>
+          </div>
+          <div class="tl-item upcoming">
+            <div class="tl-date">May 6, 2026 — upcoming</div>
+            <div class="tl-title">Trial Wrap-up · Group</div>
+            <div class="tl-desc">Current-state vs. future-state, connector roadmap, and next-steps alignment.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="uc-card">
+          <div><span class="uc-tag">Scheduled Task · Live</span></div>
+          <div class="title">European Pet Food Weekly Briefing</div>
+          <div class="meta">Owner: Tomoyo · Wednesdays · 7-day lookback · Europe coverage</div>
+          <div class="body">Industry trends, key players, acquisitions, regulatory news, new products and partnerships — delivered to inbox every week.</div>
+        </div>
+
+        <div class="uc-card">
+          <div><span class="uc-tag">Scheduled Task · Spinning Up</span></div>
+          <div class="title">Japan Food &amp; Ingredients M&amp;A in EMEA</div>
+          <div class="meta">Owner: Tomoyo · Tracks M&amp;A, capex and partnerships by Japanese F&amp;B and ingredients players</div>
+          <div class="body">Strategic intelligence brief covering Japanese cross-border activity in Europe — built off the prompt JM and Tomoyo refined together.</div>
+        </div>
+
+        <div class="uc-card">
+          <div><span class="uc-tag">Asset · Live</span></div>
+          <div class="title">Marubeni PPT Master Template</div>
+          <div class="meta">Owner: All users · Built off the corporate template Kayo provided</div>
+          <div class="body">Every deck Rogo generates lands in Marubeni format by default. Naoko was first to ship slides off it.</div>
+        </div>
+
+        <div class="uc-card">
+          <div><span class="uc-tag">Use Case · In Progress</span></div>
+          <div class="title">UK / European Market Research</div>
+          <div class="meta">Owners: Tomoyo (ice cream), Kayo (pet food, R&amp;D)</div>
+          <div class="body">Monthly food category research with PowerPoint outputs and real-time translation to Japanese for Tokyo HQ.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES MATRIX -->
+  <section>
+    <div class="section-head">
+      <div>
+        <div class="kicker">Feature Adoption</div>
+        <h2>Features used across the team</h2>
+      </div>
+      <div class="lede">Kayo is the standout multi-feature user — 6 of 8 features active in the last 28 days.</div>
+    </div>
+
+    <div class="card" style="padding:8px 8px">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Tomoyo</th>
+            <th>Kayo</th>
+            <th>JM</th>
+            <th>Kensuke</th>
+            <th>Naoko</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Felix queries</td><td><span class="dotmark dot-on"></span></td><td><span class="dotmark dot-on"></span></td><td><span class="dotmark dot-on"></span></td><td><span class="dotmark dot-on"></span></td><td><span class="dotmark dot-on"></span></td></tr>
+          <tr><td>Scheduled tasks</td><td><span class="dotmark dot-on"></span></td><td><span class="dotmark dot-on"></span></td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td></tr>
+          <tr><td>Spreadsheets / Tables</td><td><span class="dotmark dot-on"></span></td><td><span class="dotmark dot-on"></span></td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td></tr>
+          <tr><td>PowerPoint export (Marubeni template)</td><td><span class="dotmark dot-on"></span></td><td><span class="dotmark dot-on"></span></td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-on"></span></td></tr>
+          <tr><td>Shortcuts</td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-on"></span></td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td></tr>
+          <tr><td>Exports (PDF / DOCX)</td><td><span class="dotmark dot-on"></span></td><td><span class="dotmark dot-on"></span></td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td></tr>
+          <tr><td>Email-to-Felix (felix@rogo.agent)</td><td><span class="dotmark dot-on"></span></td><td><span class="dotmark dot-on"></span></td><td><span class="dotmark dot-on"></span></td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td></tr>
+          <tr><td>Custom skill creation</td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- QUOTES + ROI -->
+  <section>
+    <div class="section-head">
+      <div>
+        <div class="kicker">Voices &amp; Wow Moments</div>
+        <h2>Where the value is showing up</h2>
+      </div>
+      <div class="lede">Quotes from sessions and emails, paired with the proof points that demonstrate ROI from the first month.</div>
+    </div>
+
+    <div class="grid-3">
+      <div class="quote">
+        "Super powerful copilot."
+        <span class="who">— Jean-Marc Michel · Apr 14, on first impression</span>
+      </div>
+      <div class="quote">
+        "Already actively using Rogo for monthly food industry reports — impressed with the intelligence and how it outputs data in the format I need automatically."
+        <span class="who">— Tomoyo Love · Apr 28 workshop</span>
+      </div>
+      <div class="quote">
+        "The real-time Japanese translation makes this immediately usable for headquarters reporting."
+        <span class="who">— Kayo Shiraishi · Apr 27 workshop</span>
+      </div>
+
+      <div class="quote stat">
+        <span class="roi-num">168 Felix messages</span> from a single user (Tomoyo) in the first month — including <span class="roi-num">51 in the last 7 days alone</span>. That pace only happens when the tool is replacing meaningful manual work.
+        <span class="who">Wow moment · Power user behavior</span>
+      </div>
+      <div class="quote stat">
+        <span class="roi-num">~30–60 min</span> of manual news scraping and synthesis collapsed into <span class="roi-num">a single scheduled email</span> — Tomoyo's European Pet Food briefing now lands every Wednesday automatically.
+        <span class="who">ROI · Scheduled tasks</span>
+      </div>
+      <div class="quote stat">
+        Every deck Rogo produces lands in the Marubeni master template by default. The PowerPoint reformatting step that used to follow every report is <span class="roi-num">eliminated</span>.
+        <span class="who">ROI · Template integration</span>
+      </div>
+
+      <div class="quote wow">
+        "Two-tier approach: Rogo Pro for instant brief answers, full Rogo workflow for detailed reports. Same procedure across topics."
+        <span class="who">— Kayo Shiraishi · Apr 16, articulating her usage model unprompted</span>
+      </div>
+      <div class="quote wow">
+        "Yes, it will be helpful to set up a quick call and understand how it works practically."
+        <span class="who">— Jean-Marc Michel · Apr 29 email re: custom skills (full team copied)</span>
+      </div>
+      <div class="quote wow">
+        Naoko activated <span class="roi-num">Apr 22</span> — by the same week she had built and shipped slides off the Marubeni master template. Late starter, fast time-to-first-deliverable.
+        <span class="who">Wow moment · Activation speed</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECURITY -->
+  <section>
+    <div class="section-head">
+      <div>
+        <div class="kicker">Security &amp; Compliance</div>
+        <h2>Security MOAT</h2>
+      </div>
+      <div class="lede">Built for financial institutions and ready for IT review.</div>
+    </div>
+
+    <div class="card">
+      <div class="cert-row">
+        <span class="cert">SOC 2 Type II</span>
+        <span class="cert">ISO 27001</span>
+        <span class="cert">GDPR</span>
+        <span class="cert">CCPA</span>
+        <span class="cert">Zero Data Retention</span>
+        <span class="cert">No Model Training</span>
+      </div>
+      <ul class="sec-list" style="margin-top:14px">
+        <li><span class="check">✓</span> Zero data retention and zero training agreements with every foundation model provider — contractual, not best effort.</li>
+        <li><span class="check">✓</span> Auditable trail: citations on every Felix output, exportable.</li>
+        <li><span class="check">✓</span> Customer trust center at <strong>trust.rogo.ai</strong>; security advisory board of CISOs from major financial institutions.</li>
+        <li><span class="check">✓</span> Security packet ready to send to Marubeni IT to clear the connector and expansion review.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section>
+    <div class="section-head">
+      <div>
+        <div class="kicker">What's Next</div>
+        <h2>From pilot to partnership</h2>
+      </div>
+      <div class="lede">Three tracks, designed to compound the value the team is already getting.</div>
+    </div>
+
+    <div class="roadmap">
+      <div class="road-card">
+        <div class="step">Track 1 · Team-Wide Partnership</div>
+        <div class="what">Expand from pilot to full deployment</div>
+        <div class="desc">Convert the active 5 to a permanent footprint, scope expansion within Marubeni Europe, and align on commercial terms with JM in a 15-min next-steps call.</div>
+      </div>
+      <div class="road-card">
+        <div class="step">Track 2 · Data Connectors</div>
+        <div class="what">Outlook · OneDrive · SharePoint</div>
+        <div class="desc">Identify the right Marubeni IT contact, send the security packet, and clear admin approval. Setup is fast on our side once IT signs off.</div>
+      </div>
+      <div class="road-card">
+        <div class="step">Track 3 · Compounding Workflows</div>
+        <div class="what">Felix reads your inbox &amp; drives</div>
+        <div class="desc">Once connectors are live, scheduled tasks and queries reference internal context — past briefings, deal threads, memos — not just public sources. Custom skills layer on top.</div>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="footer">
+    <div>Marubeni × Rogo · Pilot Wrap-Up Dashboard · Prepared April 29, 2026</div>
+    <div>Built by Felix · trust.rogo.ai</div>
+  </div>
+</div>
+</body>
+</html>
