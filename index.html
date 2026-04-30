@@ -83,7 +83,65 @@ section{margin-top:36px}
 .grid-2{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-@media (max-width:900px){.grid-2,.grid-3,.grid-4,.kpi-row{grid-template-columns:1fr 1fr}}
+/* Tablet */
+@media (max-width:1024px){
+  .grid-2{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr 1fr}
+  .grid-4{grid-template-columns:1fr 1fr}
+  .kpi-row{grid-template-columns:repeat(3,1fr)}
+  .roadmap{grid-template-columns:1fr}
+  .sec-grid{grid-template-columns:1fr}
+}
+/* Mobile */
+@media (max-width:680px){
+  .page{padding:16px 14px 48px}
+  .hero{padding:24px 20px;border-radius:10px}
+  .hero h1{font-size:1.75rem;line-height:1.15}
+  .hero .sub{font-size:.9rem}
+  .hero-row{align-items:flex-start}
+  .hero-mark{font-size:.75rem;flex-wrap:wrap;gap:8px}
+  .kpi-row{grid-template-columns:1fr 1fr;gap:10px}
+  .kpi{padding:12px 12px}
+  .kpi .value{font-size:1.4rem}
+  .kpi .label{font-size:.65rem}
+  .kpi .delta{font-size:.7rem}
+  section{margin-top:28px}
+  .section-head{flex-direction:column;gap:6px;align-items:flex-start}
+  .section-head .lede{text-align:left;font-size:.85rem}
+  .section-head h2{font-size:1.2rem}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .card{padding:16px}
+  /* Engagement bar rows */
+  .bar-row{grid-template-columns:90px 1fr 44px;gap:8px}
+  .bar-row .name{font-size:.8rem}
+  .bar-row .val{font-size:.78rem}
+  .bar-track-lg{height:14px}
+  /* Donut */
+  .donut-wrap{flex-direction:column;gap:14px}
+  .donut-wrap svg{width:140px;height:140px}
+  /* User table -> turn into stacked cards */
+  .utable thead{display:none}
+  .utable, .utable tbody, .utable tr, .utable td{display:block;width:100%}
+  .utable tr{border:1px solid var(--border-primary-solid);border-radius:10px;margin-bottom:10px;padding:12px;background:var(--surface)}
+  .utable td{padding:6px 0;border:none;text-align:left !important}
+  .utable td:first-child{padding-bottom:10px;border-bottom:1px solid var(--border-primary-solid);margin-bottom:8px}
+  .utable td.num{font-family:'Roboto Mono',monospace;text-align:left}
+  .utable td:not(:first-child)::before{content:attr(data-label);display:inline-block;min-width:120px;color:var(--text-tertiary);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+  .utable tr:hover td{background:transparent}
+  /* Features matrix -> horizontal scroll */
+  .matrix-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .matrix{min-width:520px}
+  .matrix th, .matrix td{padding:8px 4px;font-size:.78rem}
+  /* Timeline */
+  .timeline{padding-left:18px}
+  .tl-item{padding:8px 0 14px 14px}
+  .tl-title{font-size:.9rem}
+  .tl-desc{font-size:.8rem}
+  /* Quotes */
+  .quote{padding:12px 14px;font-size:.88rem}
+  /* Footer */
+  .footer{flex-direction:column;align-items:flex-start;gap:6px;font-size:.72rem}
+}
 
 /* User table */
 .utable{width:100%;border-collapse:collapse;font-size:.875rem}
@@ -297,43 +355,43 @@ section{margin-top:36px}
         <tbody>
           <tr>
             <td><div class="user-cell"><div class="avatar jm">JM</div><div><div class="uname">Jean-Marc Michel</div><div class="urole">Team lead</div></div></div></td>
-            <td class="num">25</td>
-            <td class="num">3</td>
-            <td>Apr 1</td>
-            <td><span class="badge b-mid">● Watch</span></td>
-            <td>Active weekly; usage has eased recently.</td>
+            <td data-label="Lifetime Felix Msgs" class="num">25</td>
+            <td data-label="Last 7 Days" class="num">3</td>
+            <td data-label="First Active">Apr 1</td>
+            <td data-label="Status"><span class="badge b-mid">● Watch</span></td>
+            <td data-label="Note">Active weekly; usage has eased recently.</td>
           </tr>
           <tr>
             <td><div class="user-cell"><div class="avatar tomoyo">TL</div><div><div class="uname">Tomoyo Love</div><div class="urole">Power user</div></div></div></td>
-            <td class="num">168</td>
-            <td class="num">51</td>
-            <td>Apr 1</td>
-            <td><span class="badge b-strong">● Compounding</span></td>
-            <td>Daily user; running scheduled tasks.</td>
+            <td data-label="Lifetime Felix Msgs" class="num">168</td>
+            <td data-label="Last 7 Days" class="num">51</td>
+            <td data-label="First Active">Apr 1</td>
+            <td data-label="Status"><span class="badge b-strong">● Compounding</span></td>
+            <td data-label="Note">Daily user; running scheduled tasks.</td>
           </tr>
           <tr>
             <td><div class="user-cell"><div class="avatar kayo">KS</div><div><div class="uname">Kayo Shiraishi</div><div class="urole">R&amp;D reporting</div></div></div></td>
-            <td class="num">14</td>
-            <td class="num">5</td>
-            <td>Apr 13</td>
-            <td><span class="badge b-strong">● Strong</span></td>
-            <td>Broadest feature usage on the team (6 of 8).</td>
+            <td data-label="Lifetime Felix Msgs" class="num">14</td>
+            <td data-label="Last 7 Days" class="num">5</td>
+            <td data-label="First Active">Apr 13</td>
+            <td data-label="Status"><span class="badge b-strong">● Strong</span></td>
+            <td data-label="Note">Broadest feature usage on the team (6 of 8).</td>
           </tr>
           <tr>
             <td><div class="user-cell"><div class="avatar kensuke">KA</div><div><div class="uname">Kensuke Arai</div><div class="urole">Investment / M&amp;A</div></div></div></td>
-            <td class="num">11</td>
-            <td class="num">2</td>
-            <td>Apr 7</td>
-            <td><span class="badge b-mid">● Watch</span></td>
-            <td>Last active Apr 26; pace has softened.</td>
+            <td data-label="Lifetime Felix Msgs" class="num">11</td>
+            <td data-label="Last 7 Days" class="num">2</td>
+            <td data-label="First Active">Apr 7</td>
+            <td data-label="Status"><span class="badge b-mid">● Watch</span></td>
+            <td data-label="Note">Last active Apr 26; pace has softened.</td>
           </tr>
           <tr>
             <td><div class="user-cell"><div class="avatar naoko">NS</div><div><div class="uname">Naoko Sugiyasu</div><div class="urole">Research</div></div></div></td>
-            <td class="num">7</td>
-            <td class="num">7</td>
-            <td>Apr 22</td>
-            <td><span class="badge b-late">● Activating</span></td>
-            <td>Late starter; first to build slides on the master template.</td>
+            <td data-label="Lifetime Felix Msgs" class="num">7</td>
+            <td data-label="Last 7 Days" class="num">7</td>
+            <td data-label="First Active">Apr 22</td>
+            <td data-label="Status"><span class="badge b-late">● Activating</span></td>
+            <td data-label="Note">Late starter; first to build slides on the master template.</td>
           </tr>
         </tbody>
       </table>
@@ -445,7 +503,7 @@ section{margin-top:36px}
       <div class="lede">Kayo is the standout multi-feature user — 6 of 8 features active in the last 28 days.</div>
     </div>
 
-    <div class="card" style="padding:8px 8px">
+    <div class="card" style="padding:8px 8px"><div class="matrix-wrap">
       <table class="matrix">
         <thead>
           <tr>
@@ -468,7 +526,7 @@ section{margin-top:36px}
           <tr><td>Custom skill creation</td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td><td><span class="dotmark dot-off"></span></td></tr>
         </tbody>
       </table>
-    </div>
+    </div></div>
   </section>
 
   <!-- QUOTES + ROI -->
